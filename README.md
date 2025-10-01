@@ -173,30 +173,32 @@ ydata-profiling>=4.0.0
 ```
 ## Pipeline Workflow
 
-Phase 1: Data Cleaning
+### Phase 1: Data Cleaning
+
 The raw CSV file had multiple formatting issues that required systematic cleaning:
 
-Remove trailing semicolons from lines
-Replace commas with semicolons in header
-Remove quotes at the beginning and end of lines
-Replace double quotes with semicolons and remove special characters
-Load cleaned data with proper separator
+1. Remove trailing semicolons from lines
+2. Replace commas with semicolons in header
+3. Remove quotes at the beginning and end of lines
+4. Replace double quotes with semicolons and remove special characters
+5. Load cleaned data with proper separator
 
-Phase 2: Data Preprocessing
+### Phase 2: Data Preprocessing
 
-Remove null values from all columns
-Drop duplicate rows (20 duplicates found)
-Remove unnecessary columns (date column)
-Reset index for clean DataFrame
+1. Remove null values from all columns
+2. Drop duplicate rows (20 duplicates found)
+3. Remove unnecessary columns (date column)
+4. Reset index for clean DataFrame
 
-Phase 3: Text Preprocessing
+### Phase 3: Text Preprocessing
+
 Comprehensive NLP preprocessing pipeline
 
-Phase 4: Feature Extraction (Word2Vec)
-Convert preprocessed text into 100-dimensional vectors:
+### Phase 4: Feature Extraction (Word2Vec)
 
-Phase 5: Model Training
-Train three different classifiers and compare results:
+Convert preprocessed text into 100-dimensional vectors
+
+### Phase 5: Model Training
 
 ## Models and Results
 
