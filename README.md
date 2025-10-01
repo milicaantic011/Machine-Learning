@@ -89,3 +89,60 @@ The dataset includes 8 different news categories:
 **Political news articles**: 4,190 (40.6% of total dataset)
 
 ## Project Structure
+
+```
+
+fake-news-detection/
+│
+├── data/
+│   ├── news_dataset.csv                    # Original raw dataset
+│   ├── news_dataset1.csv                   # After removing trailing semicolons
+│   ├── news_dataset_semicolon.csv          # After header separator replacement
+│   ├── news_dataset_no_quotes.csv          # After removing quotes
+│   ├── news_dataset_clean.csv              # After cleaning special characters
+│   ├── news_dataset_clean2.csv             # Final cleaned CSV (no nulls/duplicates)
+│   └── news_dataset_preprocessed.json      # Preprocessed with 'processed' column
+│
+├── notebooks/
+│   ├── 01_data_cleaning.ipynb              # Data cleaning pipeline
+│   ├── 02_preprocessing.ipynb              # Text preprocessing and NLP
+│   ├── 03_word2vec_training.ipynb          # Word2Vec embeddings
+│   └── 04_model_training.ipynb             # ML model training and evaluation
+│
+├── src/
+│   ├── init.py
+│   ├── data_cleaning.py                    # CSV cleaning functions
+│   ├── preprocessing.py                    # Text preprocessing functions
+│   ├── feature_extraction.py               # Word2Vec implementation
+│   └── models.py                           # ML model definitions
+│
+├── reports/
+│   ├── profile_report.html                 # YData profiling report
+│   └── model_results.txt                   # Classification reports
+│
+├── requirements.txt                         # Python dependencies
+├── README.md                               # Project documentation
+├── .gitignore                              # Git ignore file
+└── LICENSE                                 # MIT License
+
+```
+
+## Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- pip package manager
+
+### Setup
+
+1. **Clone the repository**:
+```bash
+git clone https://github.com/yourusername/fake-news-detection.git
+cd fake-news-detection
+```
+2. **Create a virtual environment (recommended)**:
+
+bashpython -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+3. **Install required packages**:
