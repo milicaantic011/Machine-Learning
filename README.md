@@ -1,4 +1,9 @@
+
 # Fake News Detection Using Machine Learning
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Accuracy](https://img.shields.io/badge/Accuracy-97%25-success)]()
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -8,12 +13,15 @@
 - [Dataset](#dataset)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
+- [Pipeline Workflow](#pipeline-workflow)
 - [Usage](#usage)
 - [Models and Results](#models-and-results)
 - [Conclusion](#conclusion)
 - [Technologies Used](#technologies-used)
+- [Future Improvements](#future-improvements)
 - [Contributing](#contributing)
 - [License](#license)
+- [Contact](#contact)
 
 ## Introduction
 
@@ -46,21 +54,22 @@ Our goal is to build a **machine learning model** that classifies news articles 
 
 ### Methodology
 
-1. **Data Preprocessing**: Clean, normalize, and prepare the text data
-2. **Text Vectorization**: Convert text into numerical vectors using **Word2Vec** embeddings
-3. **Model Building**: Train multiple classification models
-4. **Evaluation**: Compare model performance to determine the most effective algorithm
+1. **Data Cleaning**: Fix CSV formatting issues and remove inconsistencies
+2. **Data Preprocessing**: Remove nulls, duplicates, and irrelevant columns
+3. **Text Processing**: Lowercase, tokenize, remove stopwords, and lemmatize
+4. **Feature Engineering**: Generate Word2Vec embeddings (100-dimensional vectors)
+5. **Model Training**: Train and compare Logistic Regression, Random Forest, and SVM
+6. **Evaluation**: Measure performance using accuracy, precision, recall, and F1-score
 
 ## Dataset
 
-The dataset contains **10,321 news articles** with the following columns:
+The dataset contains **10,321 news articles** after cleaning, with the following columns:
 
 | Column | Description |
 |--------|-------------|
 | `title` | Article title |
 | `text` | Article content |
 | `subject` | Article category/topic (News, Politics, World News, etc.) |
-| `date` | Publication date |
 | `isfake` | Target label (0 = true, 1 = fake) |
 | `title_content` | Combined title and text |
 | `processed` | Preprocessed text (lowercased, cleaned, stopwords removed, lemmatized) |
@@ -68,13 +77,15 @@ The dataset contains **10,321 news articles** with the following columns:
 ### Subject Distribution
 
 The dataset includes 8 different news categories:
-- politicsNews (2,920 articles)
-- worldnews (2,691 articles)
-- News (1,931 articles)
-- politics (1,270 articles)
-- leftnews (882 articles)
-- Government News (303 articles)
-- USNews (165 articles)
-- Middleeast (159 articles)
+- **politicsNews** (2,920 articles) - 28.3%
+- **worldnews** (2,691 articles) - 26.1%
+- **News** (1,931 articles) - 18.7%
+- **politics** (1,270 articles) - 12.3%
+- **leftnews** (882 articles) - 8.5%
+- **Government News** (303 articles) - 2.9%
+- **USNews** (165 articles) - 1.6%
+- **Middleeast** (159 articles) - 1.5%
+
+**Political news articles**: 4,190 (40.6% of total dataset)
 
 ## Project Structure
