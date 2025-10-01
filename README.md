@@ -141,8 +141,165 @@ git clone https://github.com/yourusername/fake-news-detection.git
 cd fake-news-detection
 ```
 2. **Create a virtual environment (recommended)**:
-
+```bash
 bashpython -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
 3. **Install required packages**:
+```bash
+pip install -r requirements.txt
+
+```
+
+4. **Download NLTK data**:
+```
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+```
+5. **requirements.txt**
+```
+textpandas>=1.3.0
+numpy>=1.21.0
+nltk>=3.6.0
+gensim>=4.0.0
+scikit-learn>=1.0.0
+matplotlib>=3.4.0
+seaborn>=0.11.0
+jupyter>=1.0.0
+ydata-profiling>=4.0.0
+```
+## Pipeline Workflow
+
+Phase 1: Data Cleaning
+The raw CSV file had multiple formatting issues that required systematic cleaning:
+
+Remove trailing semicolons from lines
+Replace commas with semicolons in header
+Remove quotes at the beginning and end of lines
+Replace double quotes with semicolons and remove special characters
+Load cleaned data with proper separator
+
+Phase 2: Data Preprocessing
+
+Remove null values from all columns
+Drop duplicate rows (20 duplicates found)
+Remove unnecessary columns (date column)
+Reset index for clean DataFrame
+
+Phase 3: Text Preprocessing
+Comprehensive NLP preprocessing pipeline
+
+Phase 4: Feature Extraction (Word2Vec)
+Convert preprocessed text into 100-dimensional vectors:
+
+Phase 5: Model Training
+Train three different classifiers and compare results:
+
+## Models and Results
+
+### Model Performance Comparison
+
+| Model | Accuracy | Precision (True) | Recall (True) | F1-Score (True) | Precision (Fake) | Recall (Fake) | F1-Score (Fake) |
+|-------|----------|------------------|---------------|-----------------|------------------|---------------|-----------------|
+| **Logistic Regression** | **97%** | 0.97 | 0.97 | **0.97** | 0.96 | 0.96 | **0.96** |
+| **Support Vector Machine** | **97%** | 0.97 | 0.97 | **0.97** | 0.97 | 0.97 | **0.97** |
+| **Random Forest** | 95% | 0.95 | 0.96 | 0.96 | 0.95 | 0.94 | 0.95 |
+
+
+### Detailed Results
+
+#### Logistic Regression
+
+**Key Strengths:**
+- Excellent balance between precision and recall
+- Fast training and prediction time
+- Low computational requirements
+- Good interpretability with coefficient weights
+
+#### Support Vector Machine (SVM)
+
+**Key Strengths:**
+- Best overall performance with perfect balance
+- Excellent generalization
+- Robust to high-dimensional data
+- Effective with clear margin of separation
+
+#### Random Forest
+
+
+**Key Strengths:**
+- Good performance with feature importance insights
+- More interpretable model
+- Robust to outliers and noise
+- No hyperparameter tuning required
+
+## Conclusion
+
+### Key Observations
+
+1. **Model Performance**
+   - Logistic Regression and SVM achieved the highest accuracy at **97%**
+   - Random Forest performed well at **95%** accuracy
+   - All models demonstrate high effectiveness in classifying fake vs. true news
+   - The minimal performance gap (2%) suggests the feature engineering was strong
+
+2. **Feature Engineering Success**
+   - Text preprocessing (lowercasing, tokenization, stopword removal, lemmatization) significantly improved model performance
+   - **Word2Vec embeddings** effectively captured semantic meaning in 100-dimensional space
+   - The average word vector approach for document representation proved highly effective
+
+3. **Pipeline Effectiveness**
+   - The complete pipeline (data cleaning → text preprocessing → Word2Vec → ML classifiers) proved highly effective
+   - Achieving **97% accuracy** demonstrates viability for real-world applications
+   - The systematic data cleaning approach resolved CSV formatting issues successfully
+  
+## Recommendations
+  
+   **For Production Deployment:**
+- **Primary Choice**: Logistic Regression or SVM (97% accuracy, balanced performance)
+- **Benefits**: Fast inference, low computational cost, high accuracy
+- **Use Case**: Real-time fake news detection in news feeds or social media
+
+**For Research/Analysis:**
+- **Primary Choice**: Random Forest (95% accuracy with interpretability)
+- **Benefits**: Feature importance analysis, understanding which words/patterns indicate fake news
+- **Use Case**: Understanding fake news characteristics and patterns
+
+  ## Technologies Used
+
+### Core Libraries
+- **Python 3.8+** - Programming language
+- **Pandas** - Data manipulation and analysis
+- **NumPy** - Numerical computing and array operations
+
+### NLP & Text Processing
+- **NLTK** - Natural language toolkit for tokenization, stopwords, lemmatization
+- **Gensim** - Word2Vec implementation for word embeddings
+- **Regular Expressions (re)** - Text cleaning and pattern matching
+
+### Machine Learning
+- **Scikit-learn** - ML models and evaluation metrics
+  - LogisticRegression
+  - RandomForestClassifier
+  - Support Vector Machine (SVC)
+  - train_test_split
+  - classification_report
+
+### Data Analysis & Visualization
+- **YData Profiling** - Automated exploratory data analysis
+- **Jupyter Notebook** - Interactive development environment
+
+-  Dataset source: News articles from various sources (2016-2017)
+- Inspired by the growing need to combat misinformation in digital media
+- Thanks to the open-source community for amazing tools (NLTK, Gensim, Scikit-learn)
+- Special thanks to all contributors and supporters
+
+## Contact
+
+**Project Maintainer**: Milica Antic
+
+- 💼 LinkedIn: https://www.linkedin.com/in/milica-antic-ds/
+
